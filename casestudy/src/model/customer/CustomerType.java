@@ -1,12 +1,10 @@
 package model.customer;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class CustomerType implements Serializable {
     public static final String CUSTOMER_TYPE_PATH = "src/data/customer/type.txt";
 
-    @Serial
     private static final long serialVersionUID = 9042L;
 
     private Integer id;

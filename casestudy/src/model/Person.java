@@ -1,13 +1,11 @@
 package model;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Person  implements Serializable {
 
     public static final String PERSON_TXT = "src/data/person/person.txt";
 
-    @Serial
     private static final long serialVersionUID = 9042L;
 
     private Integer id;

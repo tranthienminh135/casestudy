@@ -61,11 +61,11 @@ public class CustomerView {
 
     private static CustomerType choiceCustomerType(List<CustomerType> customerTypes) {
         while (true) {
-            for (CustomerType ct: customerTypes) {
+            for (CustomerType ct : customerTypes) {
                 System.out.println(ct.getId() + ". " + ct.getName());
             }
             int choiceCustomerType = ExceptionHandler.checkForParseInt("lựa chọn của bạn");
-            for (CustomerType ct: customerTypes) {
+            for (CustomerType ct : customerTypes) {
                 if (choiceCustomerType == ct.getId()) {
                     return ct;
                 }
@@ -78,10 +78,15 @@ public class CustomerView {
         if (personList.isEmpty()) {
             System.out.println("Không có dữ liệu trong bảng!");
         } else {
-            for (Person person: personList) {
+            StringBuilder str = new StringBuilder("" +
+                    "+----+----------------+-----------------+------------------------+-----------------+\n" +
+                    "| ID | Tên khách hàng |  Số điện thoại  |         Email          | Loại khách hàng |\n" +
+                    "+----+----------------+-----------------+------------------------+-----------------+\n");
+            for (Person person : personList) {
                 if (person instanceof Customer)
-                System.out.println(person);
+                    str.append(person);
             }
+            System.out.println(str);
         }
     }
 }
