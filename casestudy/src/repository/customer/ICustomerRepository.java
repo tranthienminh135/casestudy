@@ -9,4 +9,6 @@ public interface ICustomerRepository {
     List<Person> findAll();
 
     void save(Person customer);
+
+    void delete(Customer customer);
 }

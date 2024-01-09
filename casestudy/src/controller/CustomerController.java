@@ -17,4 +17,8 @@ public class CustomerController {
     public void save(Person customer) {
         this.customerService.save(customer);
     }
+
+    public void delete(Customer customer) {
+        this.customerService.delete(customer);
+    }
 }

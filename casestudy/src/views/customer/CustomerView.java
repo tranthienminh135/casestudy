@@ -33,13 +33,51 @@ public class CustomerView {
                     this.showCustomerList();
                     break;
                 case 2:
-                    createNewCustomer();
+                    this.createNewCustomer();
                     break;
+                case 4:
+                     Customer customer = selectedCustomerToDelete();
+                     if (customer != null) {
+                         String str =
+                                         "+-------------------------------------------------------------------------+\n" +
+                                         "          Bạn có chắc chắn muốn xóa khách hàng có tên %s?                  \n" +
+                                         "+-------------------------------------------------------------------------+\n" +
+                                         "|            1. Có                                  2. Không              |\n" +
+                                         "+-------------------------------------------------------------------------+";
+                         String formattedRow = String.format(str, customer.getName());
+                         System.out.println(formattedRow);
+//                         this.customerController.delete(customer);
+                     }
+
+                break;
                 case 0:
                     return;
                 default:
                     System.out.println("Giá trị không hợp lệ!");
                     break;
+            }
+        }
+    }
+
+    private Customer selectedCustomerToDelete() {
+        while (true) {
+            List<Person> personList = this.customerController.findAll();
+            for (Person person : personList) {
+                if (person instanceof Customer) {
+                    System.out.println(person.getId() + ". " + person.getName());
+                }
+            }
+            System.out.println("0. Hủy");
+            int choiceCustomer = ExceptionHandler.checkForParseInt("khách hàng muốn xóa");
+            if (choiceCustomer == 0) {
+                return null;
+            }
+            for (Person person : personList) {
+                if (person instanceof Customer) {
+                    if (choiceCustomer == person.getId()) {
+                        return (Customer) person;
+                    }
+                }
             }
         }
     }

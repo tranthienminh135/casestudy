@@ -1,6 +1,7 @@
 package service.customer.impl;
 
 import model.Person;
+import model.customer.Customer;
 import repository.customer.ICustomerRepository;
 import repository.customer.impl.CustomerRepository;
 import service.customer.ICustomerService;
@@ -18,11 +19,15 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void save(Person customer) {
-        autoIncrementId(customer);
-        this.customerRepository.save(customer);
+        this.customerRepository.save(autoIncrementId(customer));
     }
 
-    private void autoIncrementId(Person person) {
+    @Override
+    public void delete(Customer customer) {
+        this.customerRepository.delete(customer);
+    }
+
+    private Person autoIncrementId(Person person) {
         List<Person> personList = this.customerRepository.findAll();
         if (personList.isEmpty()) {
             person.setId(1);
@@ -33,7 +38,8 @@ public class CustomerService implements ICustomerService {
                     maxId = c.getId();
                 }
             }
-            person.setId(maxId);
+            person.setId(maxId + 1);
         }
+        return person;
     }
 }
